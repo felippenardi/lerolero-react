@@ -16,6 +16,15 @@ class App extends Component {
     );
   }
 
+  triggerAndShake = (action) => {
+    this.generateSentence();
+
+    // Without the timeout, the stateMachine won't trigger
+    setTimeout(() => {
+      this.trigger(action);
+    });
+  }
+
   renderSentence = () => {
     var generator = mapState(this.sentenceGenerationMap, this.state);
     if (generator) {
@@ -89,9 +98,9 @@ class App extends Component {
         <br/>
         <br/>
         <ul>
-          <li><a href="#" onClick={() => this.trigger('SELECT_GENERIC')}>Generic</a></li>
-          <li><a href="#" onClick={() => this.trigger('SELECT_PSYCHOANALYST')}>Freud glasses</a></li>
-          <li><a href="#" onClick={() => this.trigger('SELECT_ASTRONOMER')}>Telescope</a></li>
+          <li><a href="#" onClick={() => this.triggerAndShake('SELECT_GENERIC')}>Generic</a></li>
+          <li><a href="#" onClick={() => this.triggerAndShake('SELECT_PSYCHOANALYST')}>Freud glasses</a></li>
+          <li><a href="#" onClick={() => this.triggerAndShake('SELECT_ASTRONOMER')}>Telescope</a></li>
         </ul>
       </div>
     );
