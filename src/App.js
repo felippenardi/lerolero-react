@@ -1,54 +1,7 @@
 import React, { Component } from 'react';
-import { Machine, mapState, matchesState } from 'xstate';
+import { mapState, matchesState } from 'xstate';
 import './App.css';
-
-// Live debug references
-const _Machine = Machine;
-const _mapState = mapState;
-
-const stateMachine = Machine({
-  parallel: true,
-  key: 'lerolero',
-  states: {
-    sheep: {
-      initial: 'still',
-      states: { still: {
-        on: { SHAKE: 'shaking' }
-      },
-      shaking: {
-        on: { FINISH_SHAKE: 'still' },
-        initial: 'brief_shake',
-        states: {
-          brief_shake: {
-            on: {
-              SHAKE: 'crazy_shake'
-            }
-          },
-          crazy_shake: {
-            on: {
-              TIMER: 'brief_shake'
-            }
-          }
-        }
-      }
-      }
-    },
-    theme: {
-      initial: 'generic',
-      states: {
-        generic: {
-          on: { SELECT_PSYCHOANALYST: 'psychoanalyst', SELECT_ASTRONOMER: 'astronomer' }
-        },
-        psychoanalyst: {
-          on: { SELECT_GENERIC: 'generic', SELECT_ASTRONOMER: 'astronomer' }
-        },
-        astronomer: {
-          on: { SELECT_PSYCHOANALYST: 'psychoanalyst', SELECT_GENERIC: 'generic' }
-        }
-      }
-    }
-  }
-});
+import stateMachine from './stateMachine';
 
 class App extends Component {
   constructor(props) {
