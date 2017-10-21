@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { mapState, matchesState } from 'xstate';
 import './App.css';
 import stateMachine from './stateMachine';
+import generate from './generator';
+import defaultSentences from './defaultSentences';
+import psychoanalystSentences from './psychoanalystSentences';
 
 class App extends Component {
   constructor(props) {
@@ -36,10 +39,10 @@ class App extends Component {
 
   sentenceGenerationMap = {
     'theme.generic': () => {
-      return 'generic sentence';
+      return generate(defaultSentences)();
     },
     'theme.psychoanalyst': () => {
-      return 'psychoanalyst sentence';
+      return generate(psychoanalystSentences)();
     },
     'theme.astronomer': () => {
       return 'astronomer sentence';
@@ -80,29 +83,41 @@ class App extends Component {
     const { sheep, theme } = this.state;
 
     return (
-      <div>
-        <span style={{ visibility: matchesState('sheep.shaking', this.state) ? 'hidden' : 'visible'}}>
-          {this.renderSentence()}
-        </span>
+        <div>
+            <div className="wrapper">
+                <div className="content" ng-controller="MainCtrl">
 
-        <button type="submit" disabled={
-            mapState(this.disabledMap, this.state) ? 'disabled' : ''
-          }
-          onClick={() => this.generateSentence()}
-        >
-          Gerar Frase
-        </button>
+                    <div className="side">
+                        <div className="ovelha">
 
-        {JSON.stringify(sheep)}
-        {this.state.theme}
-        <br/>
-        <br/>
-        <ul>
-          <li><a href="#" onClick={() => this.triggerAndShake('SELECT_GENERIC')}>Generic</a></li>
-          <li><a href="#" onClick={() => this.triggerAndShake('SELECT_PSYCHOANALYST')}>Freud glasses</a></li>
-          <li><a href="#" onClick={() => this.triggerAndShake('SELECT_ASTRONOMER')}>Telescope</a></li>
-        </ul>
-      </div>
+                            <h1>Lero Lero</h1>
+
+                            <a onClick={() => this.generateSentence()} id="gerar-frase" href="#">
+                                Gerar frase
+                            </a>
+
+                        </div>
+                    </div>
+
+                    <article className="main">
+                        <blockquote className="frase">
+                            {this.renderSentence()}
+                        </blockquote>
+                    </article>
+
+                </div>
+            </div>
+
+            <br/>
+            {JSON.stringify(sheep)}
+            {this.state.theme}
+            <br/>
+            <ul>
+                <li><a href="#" onClick={() => this.trigger('SELECT_GENERIC')}>Generic</a></li>
+                <li><a href="#" onClick={() => this.trigger('SELECT_PSYCHOANALYST')}>Freud glasses</a></li>
+                <li><a href="#" onClick={() => this.trigger('SELECT_ASTRONOMER')}>Telescope</a></li>
+            </ul>
+        </div>
     );
   }
 }
