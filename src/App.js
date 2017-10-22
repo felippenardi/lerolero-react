@@ -5,6 +5,7 @@ import stateMachine from './stateMachine';
 import generate from './generator';
 import defaultSentences from './defaultSentences';
 import psychoanalystSentences from './psychoanalystSentences';
+import Transition from 'react-transition-group/Transition'
 
 class App extends Component {
   constructor(props) {
@@ -29,12 +30,17 @@ class App extends Component {
   }
 
   renderSentence = () => {
-    var generator = mapState(this.sentenceGenerationMap, this.state);
-    if (generator) {
-      return <div className="sentence">{generator()}</div>;
-    } else {
-      return <div className="sentence">deu ruim...</div>;
-    }
+    const isStill = matchesState('sheep.still', this.state);
+    const isCrazy = matchesState('sheep.shaking.crazy_shake', this.state);
+    return (
+      <Transition in={!isStill} timeout={50}>
+        {(status) => (
+          <div className={`sentence sentence-${status}`}>
+            {this.sentence}
+          </div>
+        )}
+      </Transition>
+    );
   }
 
   sentenceGenerationMap = {
@@ -55,6 +61,8 @@ class App extends Component {
   }
 
   shakeTimeout = null;
+
+  sentence = '';
 
   disabledMap = {
     'sheep.shaking.crazy_shake': true
@@ -82,17 +90,27 @@ class App extends Component {
   render() {
     const { sheep, theme } = this.state;
 
+    if (matchesState('sheep.still', this.state)) {
+      var generator = mapState(this.sentenceGenerationMap, this.state);
+      this.sentence = generator();
+    }
+
+    const isCrazy = matchesState('sheep.shaking.crazy_shake', this.state);
+
     return (
         <div>
             <div className="wrapper">
                 <div className="content" ng-controller="MainCtrl">
 
                     <div className="side">
-                        <div className="ovelha">
+                      <div className="ovelha">
 
                             <h1>Lero Lero</h1>
 
-                            <a onClick={() => this.generateSentence()} id="gerar-frase" href="#">
+                            <a
+                              onClick={() => this.generateSentence()} id="gerar-frase"
+                              className={`${isCrazy ? 'crazy-shake' : ''}`}
+                            >
                                 Gerar frase
                             </a>
 
@@ -113,9 +131,9 @@ class App extends Component {
             {this.state.theme}
             <br/>
             <ul>
-                <li><a href="#" onClick={() => this.trigger('SELECT_GENERIC')}>Generic</a></li>
-                <li><a href="#" onClick={() => this.trigger('SELECT_PSYCHOANALYST')}>Freud glasses</a></li>
-                <li><a href="#" onClick={() => this.trigger('SELECT_ASTRONOMER')}>Telescope</a></li>
+                <li><a href="#" onClick={() => this.triggerAndShake('SELECT_GENERIC')}>Generic</a></li>
+                <li><a href="#" onClick={() => this.triggerAndShake('SELECT_PSYCHOANALYST')}>Freud glasses</a></li>
+                <li><a href="#" onClick={() => this.triggerAndShake('SELECT_ASTRONOMER')}>Telescope</a></li>
             </ul>
         </div>
     );
