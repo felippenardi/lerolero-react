@@ -19,7 +19,7 @@ body {
   flex-flow: row wrap;
   text-align: center;
   justify-content: center;
-  max-width: 800px;
+  width: 950px;
   min-height: 145px;
   padding: 0 30px;
 }
@@ -68,6 +68,7 @@ body {
 .frase {
   background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/78860/quotes.png) no-repeat;
   padding-left: 100px;
+  min-height: 80px;
   font-size: 20px;
   color: #56554D;
   text-shadow: 0 1px 1px white;
