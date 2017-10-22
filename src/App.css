@@ -121,6 +121,7 @@ body {
 }
 
 .ovelha {
+  user-select: none;
   order: 2;
   cursor: pointer;
   position: absolute;
