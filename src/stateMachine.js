@@ -31,12 +31,12 @@ const stateMachine = Machine({
       initial: 'generic',
       states: {
         generic: {
-          on: { SELECT_PSYCHOANALYST: 'psychoanalyst', SELECT_ASTRONOMER: 'astronomer' }
+          on: { SELECT_PSYCHOANALYST: 'psychoanalyst', SELECT_DEVELOPER: 'developer' }
         },
         psychoanalyst: {
-          on: { SELECT_GENERIC: 'generic', SELECT_ASTRONOMER: 'astronomer' }
+          on: { SELECT_GENERIC: 'generic', SELECT_DEVELOPER: 'developer' }
         },
-        astronomer: {
+        developer: {
           on: { SELECT_PSYCHOANALYST: 'psychoanalyst', SELECT_GENERIC: 'generic' }
         }
       }

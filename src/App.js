@@ -5,6 +5,7 @@ import stateMachine from './stateMachine';
 import generate from './generator';
 import defaultSentences from './defaultSentences';
 import psychoanalystSentences from './psychoanalystSentences';
+import developerSentences from './developerSentences';
 import Transition from 'react-transition-group/Transition'
 
 class App extends Component {
@@ -50,8 +51,8 @@ class App extends Component {
     'theme.psychoanalyst': () => {
       return generate(psychoanalystSentences)();
     },
-    'theme.astronomer': () => {
-      return 'astronomer sentence';
+    'theme.developer': () => {
+      return generate(developerSentences)();
     },
   }
 
@@ -133,7 +134,7 @@ class App extends Component {
             <ul>
                 <li><a href="#" onClick={() => this.triggerAndShake('SELECT_GENERIC')}>Generic</a></li>
                 <li><a href="#" onClick={() => this.triggerAndShake('SELECT_PSYCHOANALYST')}>Freud glasses</a></li>
-                <li><a href="#" onClick={() => this.triggerAndShake('SELECT_ASTRONOMER')}>Telescope</a></li>
+                <li><a href="#" onClick={() => this.triggerAndShake('SELECT_DEVELOPER')}>Developer</a></li>
             </ul>
         </div>
     );
