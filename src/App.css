@@ -155,3 +155,28 @@ body {
   height: 94px;
   user-select: none;
 }
+
+.generators {
+  opacity: 0.2;
+  min-width: 100px;
+  margin: 0 auto;
+  margin-left: 100px;
+  margin-bottom: 30px;
+}
+
+.generators__option {
+  margin-left: 5px;
+}
+
+.generators__option__link {
+  padding: 5px 10px;
+  display: inline-block;
+  border-radius: 3px;
+  text-decoration: none;
+  color: #333;
+  background-color: #E6E6E6;
+}
+
+.generators__option__link--selected {
+  text-decoration: none;
+}

@@ -8,10 +8,13 @@
   "dependencies": {
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-helmet": "^5.2.0",
     "react-transition-group": "^2.2.1",
+    "serve": "^6.4.3",
     "xstate": "^1.2.1"
   },
   "scripts": {
+    "now-start": "cd build && serve -s ./",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
