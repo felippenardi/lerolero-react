@@ -4,7 +4,7 @@ const developerSentences = [
     "Com este commit, ",
     "Nesse pull request, ",
     "Dado o fluxo de dados atual, ",
-    "Explica pro Product Onwer que ",
+    "Explica pro Product Owner que ",
     "Desde ontem a noite ",
     "A equipe de suporte precisa saber que ",
   ],
